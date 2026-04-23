@@ -18,12 +18,15 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Compilar
-        run: javac main/Main.java
+      - name: Compilar projeto
+        run: javac -d build main/Main.java
+
+      - name: Rodar aplicação
+        run: echo "5" | java -cp build main.Main
 
       - name: Gerar artefato
         run: |
-          mkdir build
+          mkdir -p build
           cp *.class build/
 
       - name: Salvar artefato
