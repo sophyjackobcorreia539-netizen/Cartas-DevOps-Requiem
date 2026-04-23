@@ -19,7 +19,7 @@ jobs:
           java-version: '17'
 
       - name: Compilar
-        run: javac Main.java
+        run: javac main/Main.java
 
       - name: Gerar artefato
         run: |
