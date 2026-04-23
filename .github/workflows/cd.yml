@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Clonar repositório
+      - name: Clonar repositório
         uses: actions/checkout@v4
 
       - name: Configurar Java
@@ -17,9 +17,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-
-      - name: Criar pasta build
-        run: mkdir -p build
 
       - name: Compilar projeto
         run: javac -d build main/Main.java
