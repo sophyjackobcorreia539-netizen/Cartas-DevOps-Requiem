@@ -21,7 +21,7 @@ jobs:
           java-version: '17'
 
       - name: Compilar projeto
-        run: javac Main.java
+        run: javac main/Main.java
 
       - name: Rodar aplicação (teste básico)
-        run: echo "Compilado com sucesso!"
+        run: java main.Main
