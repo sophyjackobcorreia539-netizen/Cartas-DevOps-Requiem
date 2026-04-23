@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Clonar repositório
+      - name: Clonar repositório
         uses: actions/checkout@v4
 
       - name: Configurar Java
@@ -23,11 +23,6 @@ jobs:
 
       - name: Rodar aplicação
         run: echo "5" | java -cp build main.Main
-
-      - name: Gerar artefato
-        run: |
-          mkdir -p build
-          cp *.class build/
 
       - name: Salvar artefato
         uses: actions/upload-artifact@v4
