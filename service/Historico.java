@@ -35,7 +35,7 @@ public class Historico {
             }
 
             if (!encontrou) {
-                System.out.println("Nada encontrado ");
+                System.out.println("Nada encontrado! ");
             }
 
         } catch (IOException e) {
