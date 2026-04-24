@@ -28,15 +28,12 @@ jobs:
 
       # ALERTA PADRÃO
       - name: Notificar Discord
-        if: env.DISCORD_WEBHOOK_URL != ''
         env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
-          curl -H "Content-Type: application/json" \
-          -d '{
-            "content": " Novo commit de ${{ github.actor }}"
-          }' \
-          "$DISCORD_WEBHOOK_URL"
+          curl -X POST "$WEBHOOK" \
+          -H "Content-Type: application/json" \
+          -d "{\"content\": \" Novo commit de ${{ github.actor }}\"}"
 
       # ALERTA DE MERGE
       - name: Notificar Discord (merge)
