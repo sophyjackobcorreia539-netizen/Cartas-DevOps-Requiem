@@ -34,7 +34,7 @@ public class GeradorCarta {
 
         ArquivoUtil.salvar("historico.txt", carta.formatarCarta());
 
-        System.out.println("Carta registrada com sucesso");
+        System.out.println("Carta registrada com sucesso!");
 
         System.out.println("\n PRÉ-VISUALIZAÇÃO DA CARTA:");
         System.out.println(carta.formatarCarta());
