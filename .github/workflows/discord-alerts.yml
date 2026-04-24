@@ -29,7 +29,7 @@ jobs:
       # ALERTA PADRÃO
       - name: Notificar Discord
         env:
-          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_CAPTAN_HOOK }}
         run: |
           curl -X POST "$WEBHOOK" \
           -H "Content-Type: application/json" \
@@ -50,4 +50,4 @@ jobs:
               ]
             }]
           }' \
-          ${{ secrets.DISCORD_WEBHOOK_URL }}
+          ${{ secrets.DISCORD_WEBHOOK_CAPTAN_HOOK }}
