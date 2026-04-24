@@ -1,4 +1,4 @@
-name: CI - Build e Teste
+name: CI - Build + Testes Unitários
 
 on:
   push:
@@ -20,8 +20,26 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Compilar projeto
-        run: javac main/Main.java
+      - name: Baixar JUnit
+        run: |
+          curl -L -o junit-platform-console-standalone.jar \
+          https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.14.2/junit-platform-console-standalone-1.14.2.jar
 
-      - name: Rodar aplicação (teste básico)
-        run: echo "Compilado com sucesso!"
+      - name: Compilar projeto
+        run: |
+          javac -d . model/*.java
+          javac -d . service/*.java
+          javac -d . util/*.java
+          javac -d . view/*.java
+          javac -d . main/*.java
+
+      - name: Compilar testes
+        run: |
+          javac -cp ".:junit-platform-console-standalone.jar" -d . test/*.java
+
+      - name: Rodar testes unitários
+        run: |
+          java -jar junit-platform-console-standalone.jar \
+          --class-path . \
+          --select-class CartaTeste \
+          --select-class GeradorCartaTeste
