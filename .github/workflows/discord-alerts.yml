@@ -27,22 +27,16 @@ jobs:
         run: echo "5" | java -cp build main.Main
 
       # ALERTA PADRÃO
-      - name: Notificar Discord (commit)
-        if: always()
+      - name: Notificar Discord
+        if: env.DISCORD_WEBHOOK_URL != ''
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           curl -H "Content-Type: application/json" \
           -d '{
-            "embeds": [{
-              "title": " Novo commit detectado",
-              "color": 5763719,
-              "fields": [
-                {"name": " Autor", "value": "${{ github.actor }}", "inline": true},
-                {"name": " Mensagem", "value": "${{ github.event.head_commit.message }}", "inline": false},
-                {"name": " Branch", "value": "${{ github.ref_name }}", "inline": true}
-              ]
-            }]
+            "content": " Novo commit de ${{ github.actor }}"
           }' \
-          ${{ secrets.DISCORD_WEBHOOK_URL }}
+          "$DISCORD_WEBHOOK_URL"
 
       # ALERTA DE MERGE
       - name: Notificar Discord (merge)
